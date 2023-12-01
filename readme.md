@@ -33,6 +33,8 @@ as scripts in the jobs directory.
 * /scheduler/jobs [GET] > returns json with details of all jobs
 
 
+# job api
+
 * /scheduler/jobs/<job_id> [DELETE] > deletes job from scheduler
 * /scheduler/jobs/<job_id> [PATCH json job data] > updates an already existing job
 * /scheduler/jobs/<job_id>/pause [POST] > pauses a job, returns json of job details
@@ -44,7 +46,7 @@ as scripts in the jobs directory.
 ## Getting Started
 
 set modules envvars, or suffer defaults
-```
+```python
 # src/jobs/my_job.py
 from . import scheduler
 
@@ -65,17 +67,17 @@ docker compose build
 ```
 
 Here we can take images, and make containers.
-```
+```bash
 docker compose create webservice
 ```
 
 Here we can bring images up.
-```
+```bash
 docker compose up webservice
 ```
 
 All volume mounts should automatically be managed. You can run tests with
 
-```
+```bash
 docker compose run tests
 ```
