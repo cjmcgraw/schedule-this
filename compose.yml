@@ -1,0 +1,13 @@
+services:
+
+  webservice:
+    build: ./webservice
+    ports:
+      - 80:8123
+    volumes:
+      - ./webservice:/app
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:latest
