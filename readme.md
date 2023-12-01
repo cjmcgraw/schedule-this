@@ -27,6 +27,7 @@ as scripts in the jobs directory.
 * /scheduler/shutdown [POST] + json={‘wait’:False} post data > shuts down the scheduler with wait=False
 
 # jobs api
+
 * /scheduler/jobs [POST json job data] > adds a job to the scheduler
 * /scheduler/jobs/<job_id> [GET] > returns json of job details
 * /scheduler/jobs [GET] > returns json with details of all jobs
@@ -45,12 +46,9 @@ as scripts in the jobs directory.
 set modules envvars, or suffer defaults
 ```
 # src/jobs/my_job.py
+from . import scheduler
 
-job_config = JobConfig(
-    RUN_EVERY=dt.timedelta(minutes=30),
-    MAX_RUN_TIME=dt.timedelta(hours=3),
-)
-
+@scheduler.scheduled_task("interval", minutes=37, max_instances=1)
 def run_job():
     ...
 ```
